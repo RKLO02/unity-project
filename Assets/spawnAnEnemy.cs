@@ -26,10 +26,13 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
-        EnemyCircleMove ecm = enemy.GetComponent<EnemyCircleMove>();
-        ecm.center = rotateCenter;
-        
-        Debug.Log("生成一个敌人");
+        if (SpawnManager.singleton.canSpawn)
+        {
+            GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            EnemyCircleMove ecm = enemy.GetComponent<EnemyCircleMove>();
+            ecm.center = rotateCenter;
+
+            Debug.Log("生成一个敌人");
+        }
     }
 }
