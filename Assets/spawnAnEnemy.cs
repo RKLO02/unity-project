@@ -5,7 +5,8 @@ public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;   
     public float spawnInterval = 3f; 
-    public int spawnCount = 5; 
+    public int spawnCount = 5;
+    public Transform rotateCenter;
 
     void Start()
     {
@@ -25,7 +26,10 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        GameObject enemy = Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+        EnemyCircleMove ecm = enemy.GetComponent<EnemyCircleMove>();
+        ecm.center = rotateCenter;
+        
         Debug.Log("生成一个敌人");
     }
 }
