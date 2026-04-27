@@ -20,7 +20,6 @@ public class BulletRaycast : MonoBehaviour
 
         Vector3 startPos = transform.position;
 
-        // 每帧施加重力，形成下坠
         velocity += Vector3.up * gravity * dt;
 
         Vector3 nextPos = startPos + velocity * dt;
@@ -33,7 +32,7 @@ public class BulletRaycast : MonoBehaviour
             if (Physics.Raycast(startPos, moveDir.normalized, out RaycastHit hit, moveDistance, hitMask))
             {
                 transform.position = hit.point;
-                Debug.Log("击中了: " + hit.collider.name);
+                Debug.Log("Hit: " + hit.collider.name);
                 Destroy(hit.collider.gameObject);
                 Destroy(gameObject);
                 return;
